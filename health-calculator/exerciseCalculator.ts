@@ -14,7 +14,7 @@ interface Result {
   average: number
 }
 
-const parseArguments2 = (args: Array<string>): TargetDailyExercises => {
+const parseArgumentsExercises = (args: Array<string>): TargetDailyExercises => {
   if(args.length < 4) throw new Error('Not enough arguments');
   let i = 3;
   const allExercises = [];
@@ -64,7 +64,7 @@ const calculateExercises = (exerciseHours: number[], target: number): Result => 
 
 
 try {
-  const { exerciseHours, target} = parseArguments2(process.argv);
+  const { exerciseHours, target} = parseArgumentsExercises(process.argv);
   console.log(calculateExercises(exerciseHours, target));
 } catch (error: unknown) {
   let errorMessage = 'Something bad happened.';

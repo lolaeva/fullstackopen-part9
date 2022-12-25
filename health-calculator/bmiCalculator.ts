@@ -5,7 +5,7 @@ interface HeightWeight {
 
 type BmiResult = 'underweight' | 'normal weight' | 'overweight'  | 'obese' | 'none';
 
-const parseArguments1 = (args: Array<string>): HeightWeight => {
+const parseArgumentsBmi = (args: Array<string>): HeightWeight => {
   if(args.length < 4) throw new Error('Not enough arguments');
   if(args.length > 4) throw new Error('Too many arguments');
 
@@ -44,7 +44,7 @@ const calculateBmi = (height: number, weight:number): BmiResult => {
 };
 
 try {
-  const { height, weight } = parseArguments1(process.argv);
+  const { height, weight } = parseArgumentsBmi(process.argv);
   console.log(calculateBmi(height, weight));
 } catch (error: unknown) {
   let errorMessage = 'Something bad happened.';
