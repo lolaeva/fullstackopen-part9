@@ -1,12 +1,22 @@
-import { ContentProps } from "../types";
+import { CoursePart } from "../types";
+import Part from "./Part";
 
-const Content = (props: ContentProps) => {
+interface ContentProps {
+  courseParts: CoursePart[]
+}
+
+// eslint-disable-next-line react/prop-types
+const Content = ({courseParts}: ContentProps) => {
+  courseParts.forEach(part => {
+    switch(part.name) {
+      case 'Backend development':
+
+    }
+  })
   return (
     <>
-      {props.courseParts.map((part) => (
-        <p key={part.name}>
-          {part.name} {part.exerciseCount}
-        </p>
+      {courseParts.map((part) => (
+        <Part key={part.name} part={part}/>
       ))}
     </>
   );
