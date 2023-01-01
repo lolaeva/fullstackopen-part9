@@ -4,8 +4,18 @@ import patientService from '../services/patientService';
 const router = express.Router();
 
 router.get('/', (_req, res) => {
-  const patients = patientService.getNonSensitiveEntries();
+  const patients = patientService.getPatients();
   res.json(patients);
+});
+
+router.get('/:id', (req, res) => {
+  const id = req.params.id;
+  const patient = patientService.getPatientById(id);
+  if(patient) {
+    res.json(patient);
+  } else {
+    res.status(404).json({'error': 'not found'});
+  }
 });
 
 router.post('/', (req, res) => {
