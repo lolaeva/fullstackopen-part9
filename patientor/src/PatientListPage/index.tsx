@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Box, Table, Button, TableHead, Typography } from "@material-ui/core";
+import { useNavigate } from "react-router-dom";
 
 import { PatientFormValues } from "../AddPatientModal/AddPatientForm";
 import AddPatientModal from "../AddPatientModal";
@@ -14,6 +15,7 @@ import { TableBody } from "@material-ui/core";
 
 const PatientListPage = () => {
   const [{ patients }, dispatch] = useStateValue();
+  const navigate = useNavigate();
 
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>();
@@ -44,6 +46,10 @@ const PatientListPage = () => {
     }
   };
 
+  const showPatient = (patient: Patient) => {
+    navigate(`patients/${patient.id}`);
+  };
+
   return (
     <div className="App">
       <Box>
@@ -62,7 +68,7 @@ const PatientListPage = () => {
         </TableHead>
         <TableBody>
           {Object.values(patients).map((patient: Patient) => (
-            <TableRow key={patient.id}>
+            <TableRow key={patient.id} onClick={() => showPatient(patient)} hover={true}>
               <TableCell>{patient.name}</TableCell>
               <TableCell>{patient.gender}</TableCell>
               <TableCell>{patient.occupation}</TableCell>

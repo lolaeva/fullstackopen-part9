@@ -3,6 +3,7 @@ import { Rating } from "@material-ui/lab";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { withStyles } from "@material-ui/core";
 
+
 type BarProps = {
   rating: number;
   showText: boolean;
