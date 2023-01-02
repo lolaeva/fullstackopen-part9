@@ -4,7 +4,7 @@ import { apiBaseUrl } from "../constants";
 import { useStateValue } from "../state";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-
+import { setSinglePatient } from "../state";
 import { Patient } from "../types";
 
 import FemaleIcon from '@mui/icons-material/Female';
@@ -21,17 +21,14 @@ const PatientPage = () => {
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       `${apiBaseUrl}/patients/${id}`
     );
-    // dispatch({ type: "SET_SINGLE_PATIENT", payload: patientData });
     return patientData;
   };
 
   useEffect(() => {
     if(!singlePatient.patient || singlePatient.patient?.id !== id) {
-      console.log('IFFFF');
       fetchPatientData()
       .then(patientData => {
-        console.log(patientData);
-        dispatch({ type: "SET_SINGLE_PATIENT", payload: patientData });
+        dispatch(setSinglePatient(patientData));
       })
       .catch(error => {
         console.log('error', error);

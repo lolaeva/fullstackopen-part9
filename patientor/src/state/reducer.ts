@@ -45,3 +45,24 @@ export const reducer = (state: State, action: Action): State => {
       return state;
   }
 };
+
+export const setPatientList = (patientListFromApi: Patient[]): Action => {
+  return {
+    type: "SET_PATIENT_LIST",
+    payload: patientListFromApi
+  };
+};
+
+export const setSinglePatient = (patientData: Patient): Action => {
+  return {
+    type: "SET_SINGLE_PATIENT",
+    payload: patientData
+  };
+};
+
+export const addPatient = (newPatient: Patient): Action => {
+  return {
+    type: "ADD_PATIENT",
+    payload: newPatient
+  };
+};
